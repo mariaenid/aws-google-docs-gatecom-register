@@ -2,3 +2,5 @@
 *.pyc
 *.pyo
 .env
+credentials.json
+token_write.pickle

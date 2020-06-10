@@ -1,6 +1,8 @@
 .serverless
 *.pyc
 *.pyo
+.venv
 .env
+.vscode
 credentials.json
 token_write.pickle

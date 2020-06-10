@@ -9,7 +9,7 @@ authorLink: 'https://github.com/rupakg'
 authorName: 'Rupak Ganguly'
 authorAvatar: 'https://avatars0.githubusercontent.com/u/8188?v=4&s=140'
 -->
-# Simple HTTP Endpoint Example
+# Simple HTTP Endpoint for update google docs
 
 This example demonstrates how to setup a simple HTTP GET endpoint. Once you ping it, it will reply with the current time. While the internal function is name `currentTime` the HTTP endpoint is exposed as `ping`.
 

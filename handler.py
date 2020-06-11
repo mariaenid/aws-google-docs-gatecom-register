@@ -59,6 +59,8 @@ def Export_Data_To_Sheets(payload):
     google docs link
     https://docs.google.com/spreadsheets/d/1V5Cq71O-XPWRqZ0lIsUYEj65LeVUQNHZFG5MhsLuVL0/edit?usp=sharing
     """
+
+    print("Writting with payload", payload)
     # add args here
     response_date = (
         service.spreadsheets()
@@ -67,7 +69,7 @@ def Export_Data_To_Sheets(payload):
             spreadsheetId=SAMPLE_SPREADSHEET_ID_input,
             valueInputOption="RAW",
             range=SAMPLE_RANGE_NAME,
-            body=dict( majorDimension="ROWS", values=payload.T.reset_index().T.values.tolist()),
+            body=dict( majorDimension="ROWS", values=payload),
         )
         .execute()
     )
@@ -75,10 +77,10 @@ def Export_Data_To_Sheets(payload):
     return response_date
 
 
-def create_payload(user_id="000011982", date=1233475435, name="testing"):
-    row = (user_id, date, name,)
+def create_payload(user_id="000011982", date=1233475435, name="Nina"):
+    row = [user_id, date, name,]
 
-    return pd.DataFrame([row])
+    return [row]
 
 def endpoint(event, context):
     """
@@ -87,6 +89,7 @@ def endpoint(event, context):
     current_time = datetime.datetime.now().time()
 
     payload_data = create_payload()
+
     res = Export_Data_To_Sheets(payload_data)
 
     body = {"message": "Hello, the current time is " + str(current_time) }

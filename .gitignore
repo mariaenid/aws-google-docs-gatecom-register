@@ -4,6 +4,9 @@
 .venv
 .env
 .vscode
+node_modules
+yarn.lock
 credentials.json
 token_write.pickle
 node_modules
+package-lock.json

@@ -8,7 +8,7 @@ language: Python
 authorLink: 'https://github.com/mepineda1992'
 authorName: 'Maria and friends'
 -->
-# Simple HTTP Endpoint for update user access into a a google 
+# Simple HTTP Endpoint for update user access into a a google
 
 ## Requirements
 - serverless (insall using `npm install`)
@@ -16,7 +16,7 @@ authorName: 'Maria and friends'
 
 ## Setup
 ```bash
-$ npm install 
+$ npm install
 $ pip install -r requirements
 ```
 
@@ -59,9 +59,12 @@ functions:
 You can now invoke the Lambda directly and even see the resulting log via
 
 ```bash
-serverless invoke --function currentTime --log
+serverless invoke --function registerHim --log
 ```
 
+```bash
+serverless invoke local --function registerHim --data '{"user_id": "123213", "name":"Maria Prueba", "device_id":"gatecom1" }'
+```
 
 Finally you can send an HTTP request directly to the endpoint using a tool like curl
 
@@ -72,7 +75,7 @@ curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/ping
 The expected result should be similar to:
 
 ```bash
-{"message": "Hello, the current time is 15:38:53.668501"}%  
+{"message": "Hello, the current time is 15:38:53.668501"}%
 ```
 
 ## Scaling

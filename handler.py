@@ -74,8 +74,8 @@ def Export_Data_To_Sheets(payload):
     return response_date
 
 
-def create_payload(user_id="000011982", date=1233475435, name="Nina"):
-    row = [user_id, date, name]
+def create_payload(user_id="000011982", current_time=1233475435, name="Nina", device_id="Gatecom"):
+    row = [user_id, current_time, name, device_id]
 
     return [row]
 
@@ -84,14 +84,25 @@ def endpoint(event, context):
     """
     Update googledocs
     """
-    current_time = datetime.datetime.now().time()
+    user_id = event.get("user_id", None)
+    name = event.get("name", None)
+    device_id = event.get("device_id", None)
+    current_time = str(datetime.datetime.now().time())
 
-    payload_data = create_payload()
+    if user_id and name:
+        print("Updating access with id {} on {}".format(user_id, device_id))
 
-    res = Export_Data_To_Sheets(payload_data)
+        add_args = lambda **k: k
+        payload = add_args(user_id=user_id, name=name, device_id=device_id, current_time=current_time)
+        payload_data = create_payload(**payload)
+
+        res = Export_Data_To_Sheets(payload_data)
+        status = 200
+    else:
+        status = 404
 
     body = {"message": "Hello, the current time is " + str(current_time)}
 
-    response = {"statusCode": 200, "body": json.dumps(body)}
+    response = {"statusCode": status, "body": json.dumps(body)}
 
     return response

@@ -6,3 +6,4 @@
 .vscode
 credentials.json
 token_write.pickle
+node_modules

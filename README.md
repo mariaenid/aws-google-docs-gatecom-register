@@ -1,21 +1,27 @@
 <!--
-title: 'AWS Simple HTTP Endpoint example in Python'
-description: 'This example demonstrates how to setup a simple HTTP GET endpoint. Once you ping it, it will reply with the current time.'
+title: 'Maria\'s project to talk to a spreadsheet'
+description: 'register people\'s access to the anti COVID offices'
 layout: Doc
 framework: v1
 platform: AWS
 language: Python
-authorLink: 'https://github.com/rupakg'
-authorName: 'Rupak Ganguly'
-authorAvatar: 'https://avatars0.githubusercontent.com/u/8188?v=4&s=140'
+authorLink: 'https://github.com/mepineda1992'
+authorName: 'Maria and friends'
 -->
-# Simple HTTP Endpoint for update google docs
+# Simple HTTP Endpoint for update user access into a a google 
 
-This example demonstrates how to setup a simple HTTP GET endpoint. Once you ping it, it will reply with the current time. While the internal function is name `currentTime` the HTTP endpoint is exposed as `ping`.
+## Requirements
+- serverless (insall using `npm install`)
+- python3 environment (install using `pyenv activate <mytestenvironmentorsomething>`)
 
-## Use Cases
+## Setup
+```bash
+$ npm install 
+$ pip install -r requirements
+```
 
-- Wrapping an existing internal or external endpoint/service
+## Local Test?
+- 🦗
 
 ## Deploy
 
@@ -56,18 +62,6 @@ You can now invoke the Lambda directly and even see the resulting log via
 serverless invoke --function currentTime --log
 ```
 
-The expected result should be similar to:
-
-```bash
-{
-    "body": "{\"message\": \"Hello, the current time is 15:40:19.009371\"}",
-    "statusCode": 200
-}
---------------------------------------------------------------------
-START RequestId: a26699d3-b3ee-11e6-98f33f952e8294 Version: $LATEST
-END RequestId: a26699d3-b3ee-11e6-98f33f952e8294
-REPORT RequestId: a26699d3-b3ee-11e6-98f33f952e8294	Duration: 0.23 ms	Billed Duration: 100 ms 	Memory Size: 1024 MB	Max Memory Used: 15 MB
-```
 
 Finally you can send an HTTP request directly to the endpoint using a tool like curl
 

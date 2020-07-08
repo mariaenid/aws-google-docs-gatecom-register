@@ -3,7 +3,6 @@ import json
 import os
 import pickle
 
-import pandas as pd
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
@@ -11,7 +10,7 @@ from numpy.random import randint
 from decouple import config
 
 # change this by your sheet ID
-SAMPLE_SPREADSHEET_ID_input = config('SAMPLE_SPREADSHEET_ID_input')
+SAMPLE_SPREADSHEET_ID_input = config("SAMPLE_SPREADSHEET_ID_input")
 CREDENTIALS_JSON = config("CREDENTIALS_JSON")
 
 # change the range if needed
@@ -49,9 +48,7 @@ def Create_Service(client_secret_file, api_service_name, api_version, *scopes):
 
 
 # change 'my_json_file.json' by your downloaded JSON file.
-Create_Service(
-    CREDENTIALS_JSON, "sheets", "v4", ["https://www.googleapis.com/auth/spreadsheets"]
-)
+Create_Service(CREDENTIALS_JSON, "sheets", "v4", ["https://www.googleapis.com/auth/spreadsheets"])
 
 
 def Export_Data_To_Sheets(payload):
@@ -69,7 +66,7 @@ def Export_Data_To_Sheets(payload):
             spreadsheetId=SAMPLE_SPREADSHEET_ID_input,
             valueInputOption="RAW",
             range=SAMPLE_RANGE_NAME,
-            body=dict( majorDimension="ROWS", values=payload),
+            body=dict(majorDimension="ROWS", values=payload),
         )
         .execute()
     )
@@ -78,9 +75,10 @@ def Export_Data_To_Sheets(payload):
 
 
 def create_payload(user_id="000011982", date=1233475435, name="Nina"):
-    row = [user_id, date, name,]
+    row = [user_id, date, name]
 
     return [row]
+
 
 def endpoint(event, context):
     """
@@ -92,7 +90,7 @@ def endpoint(event, context):
 
     res = Export_Data_To_Sheets(payload_data)
 
-    body = {"message": "Hello, the current time is " + str(current_time) }
+    body = {"message": "Hello, the current time is " + str(current_time)}
 
     response = {"statusCode": 200, "body": json.dumps(body)}
 
